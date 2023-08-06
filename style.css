@@ -1,0 +1,119 @@
+body{
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.sheet{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    background-color: rgb(207, 205, 205);
+    padding: 150px 500px;
+}
+
+.score-container{
+    display: flex;
+    flex: 1;
+}
+
+.result{
+    display: flex;
+    flex: 1;
+    width: 600px;
+    height: 200px;
+    border: 1px solid;
+    background-color: white;
+}
+.player{
+    padding: 0 25px;
+}
+
+.player1{
+    justify-content: flex-start;
+}
+
+.cpu{
+    
+}
+
+.name{
+    text-align: center;
+    font-size: 38px;
+}
+
+.point-container{
+    display: flex;
+    flex: 1;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle{
+    display: flex;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid;
+    background-color: white; 
+}
+
+.choice-container{
+    display: flex;
+    flex: 1;
+    padding: 0 100px;
+    gap: 20px;
+}
+
+.playerChoices{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.choice{
+    padding: 8px;
+    width: 200px;
+    height: 100px;
+    color: #F9FAF8;
+    border-radius: 12px;
+    border: #000000 solid;
+}
+
+.rock{
+    background-color: #511b1b;
+}
+
+.paper{
+    background-color: rgb(70, 105, 192);
+}
+
+.scissors{
+    background-color: #36a432;
+}
+
+.player-choice{
+    width: 400px;
+    height: 400px;
+    /*border: 1px solid;*/
+}
+
+.p1-choice{
+    
+}
+
+.cpu-choice{
+
+}
+
+.win-container{
+    width: 400px;
+    height: 200px;
+    /*border: 1px solid;*/
+}
+
