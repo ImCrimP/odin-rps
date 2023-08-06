@@ -15,9 +15,9 @@
             <div class="player player1">
                 <div class="name">Player 1</div>
                 <div class="point-container">
-                    <div class="circle cir-p1 p1-cir-1"></div>
-                    <div class="circle cir-p1 p1-cir-2"></div>
-                    <div class="circle cir-p1 p1-cir-1"></div>
+                    <div class="circle cir-p1" id="p1-cir-1"></div>
+                    <div class="circle cir-p1" id="p1-cir-2"></div>
+                    <div class="circle cir-p1" id="p1-cir-3"></div>
                 </div>
             </div>
 
@@ -27,16 +27,16 @@
             <div class="player cpu">
                 <div class="name">CPU</div>
                 <div class="point-container">
-                    <div class="circle cir-cpu cpu-cir-1"></div>
-                    <div class="circle cir-cpu cpu-cir-2"></div>
-                    <div class="circle cir-cpu cpu-cir-3"></div>
+                    <div class="circle cir-cpu" id="cpu-cir-1"></div>
+                    <div class="circle cir-cpu" id="cpu-cir-2"></div>
+                    <div class="circle cir-cpu" id="cpu-cir-3"></div>
                 </div>
             </div>
 
         </div>
 
-        <div class="win-container">
-
+        <div class="win-container" id="win-container">
+            <div class="winTxt" id="winTxt"></div>
         </div>
 
         <div class="choice-container">
@@ -48,6 +48,10 @@
                 <button class="choice scissors" id="scissors">SCISSORS</button>
             </div>
             <div class="cpu-choice player-choice"></div>
+        </div>
+
+        <div>
+            <button class="restart">RESTART</button>
         </div>
 
     </div>

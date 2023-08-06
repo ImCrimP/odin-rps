@@ -65,7 +65,7 @@ body{
 .choice-container{
     display: flex;
     flex: 1;
-    padding: 0 100px;
+    padding: 0 10px;
     gap: 20px;
 }
 
@@ -76,7 +76,8 @@ body{
     align-items: center;
 }
 
-.choice{
+button{
+    font-size: 20px;
     padding: 8px;
     width: 200px;
     height: 100px;
@@ -95,6 +96,10 @@ body{
 
 .scissors{
     background-color: #36a432;
+}
+
+.restart{
+    background-color: #000000;
 }
 
 .player-choice{
@@ -117,3 +122,12 @@ body{
     /*border: 1px solid;*/
 }
 
+#win-container{
+    display: flex;
+    flex: 1;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 64px;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
