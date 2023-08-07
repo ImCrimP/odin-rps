@@ -22,6 +22,8 @@
             </div>
 
             <div class="result">
+                <div id="winner"></div>
+                <div id="explanation"></div>
             </div>
 
             <div class="player cpu">
@@ -40,18 +42,18 @@
         </div>
 
         <div class="choice-container">
-            <div class="p1-choice player-choice"></div>
+            <div class="p1-choice player-choice" id="p1Choice"></div>
             <div class="playerChoices">
                 
-                <button class="choice rock" id="rock">ROCK</button>
-                <button class="choice paper" id="paper">PAPER</button>
-                <button class="choice scissors" id="scissors">SCISSORS</button>
+                <button class="btn choice rock" id="rock">ROCK</button>
+                <button class="btn choice paper" id="paper">PAPER</button>
+                <button class="btn choice scissors" id="scissors">SCISSORS</button>
             </div>
-            <div class="cpu-choice player-choice"></div>
+            <div class="cpu-choice player-choice" id="cpuChoice"></div>
         </div>
 
         <div>
-            <button class="restart">RESTART</button>
+            <button class="restart btn" id="restart">RESTART</button>
         </div>
 
     </div>

@@ -2,10 +2,16 @@ const rock = document.querySelector(".rock");
 const paper = document.querySelector(".paper");
 const scissors = document.querySelector(".scissors");
 
-const choiceBtn = document.querySelectorAll('.choice');
+const choiceBtn = document.querySelectorAll('.btn');
 
-const winGame = document.querySelector("#win-container")
-const winTxt = document.querySelector("#winTxt")
+const winGame = document.querySelector("#win-container");
+const winTxt = document.querySelector("#winTxt");
+
+const winDisplay = document.querySelector("#winner");
+const explanation = document.querySelector("#explanation");
+
+const p1Choice = document.querySelector("#p1Choice");
+const cpuChoice = document.querySelector("#cpuChoice");
 
 const win1 = document.querySelector("#p1-cir-1");
 const win2 = document.querySelector("#p1-cir-2");
@@ -40,9 +46,18 @@ const choices = ["rock", "paper", "scissors"];
 choiceBtn.forEach((button) => {
     button.addEventListener('click', () => {
         console.log(playerSelection = button.id);
+        
         playerSelection = button.id;
-        getComputerChoice();
-        playRound(playerSelection, computerSelection);
+        if(playerSelection != "restart"){
+            getComputerChoice();
+            showChoice(playerSelection, computerSelection);
+            playRound(playerSelection, computerSelection);
+            
+        }
+        else{
+            restart();
+        }
+        
         console.log(`You chose ${playerSelection} and the computer chose ${computerSelection}`);
     })
 });
@@ -51,50 +66,96 @@ choiceBtn.forEach((button) => {
 
 function playRound(playerSelection, computerSelection){
 
-    while(playerSelection != undefined){
-        if(computerSelection == playerSelection){
-            return `Draw!`
-        }
-        else if(computerSelection == "rock"){
-            //return console.log((playerSelection == "paper") ? `You Win!` : `You Lose!`);
-            if(playerSelection == "paper"){
-                winCount ++;
-                checkWinner();
-                if(win){
-                   return winner();
+        while(playerSelection != undefined){
+            //winDisplay.textContent = '';
+            //explanation.textContent = '';
+
+            if(computerSelection == playerSelection){
+                winDisplay.textContent = "Draw!"
+                explanation.textContent = `${playerSelection.toUpperCase()} ties ${computerSelection.toUpperCase()}`;
+                return
+            }
+            else if(computerSelection == "rock"){
+                //return console.log((playerSelection == "paper") ? `You Win!` : `You Lose!`);
+                if(playerSelection == "paper"){
+                    winCount ++;
+                    winDisplay.textContent = 'You Win!';
+                    explanation.textContent = `${playerSelection.toUpperCase()} beats ${computerSelection.toUpperCase()}`;
+                    fillWin();
+                    checkWinner();
+                    if(win){
+                       return winner();
+                    }
                 }
-            }
-            else{
-                loseCount ++;
-                checkWinner();
-            }
-            return 
-        }
-        else if(computerSelection == "paper"){
-            //return console.log((playerSelection == "scissors") ? `You Win!` : `You Lose!`);
-            if(playerSelection == "scissors"){
-                winCount ++;
-                checkWinner();
-                if(win){
-                    return winner();
+                else{
+                    loseCount ++;
+                    winDisplay.textContent = 'You Lose!';
+                    explanation.textContent = `${computerSelection.toUpperCase()} beats ${playerSelection.toUpperCase()}`;
+                    console.log(loseCount);
+                    fillLose();
+                    checkWinner();
+                    if(lose){
+                        return loser();
+                    }
                 }
+                return 
             }
-            return;
-        }
-        else if(computerSelection == "scissors"){
-            //return console.log((playerSelection == "rock") ? `You Win!` : `You Lose!`);
-            if(playerSelection == "rock"){
-                winCount ++;
-                checkWinner();
-                if(win){
-                    return winner();
+            else if(computerSelection == "paper"){
+                //return console.log((playerSelection == "scissors") ? `You Win!` : `You Lose!`);
+                if(playerSelection == "scissors"){
+                    winCount ++;
+                    winDisplay.textContent = 'You Win!';
+                    explanation.textContent = `${playerSelection.toUpperCase()} beats ${computerSelection.toUpperCase()}`;
+                    fillWin();
+                    checkWinner();
+                    if(win){
+                        return winner();
+                    }
                 }
+                else{
+                    loseCount ++;
+                    winDisplay.textContent = 'You Lose!';
+                    explanation.textContent = `${computerSelection.toUpperCase()} beats ${playerSelection.toUpperCase()}`;;
+                    console.log(loseCount);
+                    fillLose();
+                    checkWinner();
+                    if(lose){
+                        return loser();
+                    }
+                }
+                return;
             }
-            return;
+            else if(computerSelection == "scissors"){
+                //return console.log((playerSelection == "rock") ? `You Win!` : `You Lose!`);
+                if(playerSelection == "rock"){
+                    winCount ++;
+                    winDisplay.textContent = 'You Win!';
+                    explanation.textContent = `${playerSelection.toUpperCase()} beats ${computerSelection.toUpperCase()}`
+                    fillWin();
+                    checkWinner();
+                    if(win){
+                        return winner();
+                    }
+                }
+                else{
+                    loseCount ++;
+                    winDisplay.textContent = 'You Lose!';
+                    explanation.textContent = `${computerSelection.toUpperCase()} beats ${playerSelection.toUpperCase()}`;
+                    console.log(loseCount);
+                    fillLose();
+                    checkWinner();
+                    if(lose){
+                        return loser();
+                    }
+                }
+                return;
+            }
         }
-    }
+    return;
     
 }
+
+//function result(playerSelection, computerSelection){}
 
 function getComputerChoice(){
     let choiceNum = Math.floor(Math.random() * 3);
@@ -109,31 +170,108 @@ function getComputerChoice(){
     }
 }
 
+function showChoice(playerSelection, computerSelection){
+        if(computerSelection == "rock"){
+            cpuChoice.textContent = "ROCK";
+        }
+        else if(computerSelection == "paper"){
+            cpuChoice.textContent = "PAPER";
+        }
+        else{
+            cpuChoice.textContent = "SCISSORS";
+        }
+    
+    
+        if(playerSelection == "rock"){
+            p1Choice.textContent = "ROCK";
+        }
+        else if(playerSelection == "paper"){
+            p1Choice.textContent = "PAPER";
+        }
+        else{
+            p1Choice.textContent = "SCISSORS";
+        }
+   
+
+    return;
+}
 
 function checkWinner(){
     if (winCount < 3 && loseCount < 3){
         win = false;
         lose = false;
     }
-    else if (winCount == 3){
+    else if (winCount >= 3){
         win = true;
     }
-    else if(loseCount == 3){
-        lose == true;
+    else if(loseCount >= 3){
+        lose = true;
+    }
+}
+
+function fillWin(){
+    if(winCount == 1){
+        win1.style.backgroundColor = playerColor;
+    }
+    else if(winCount == 2){
+        win2.style.backgroundColor = playerColor;
+    }
+    else if(winCount >= 3){
+        win3.style.backgroundColor = playerColor;
+    }
+}
+
+function fillLose(){
+    if(loseCount == 1){
+        lose1.style.backgroundColor = cpuColor;
+    }
+    else if(loseCount == 2){
+        lose2.style.backgroundColor = cpuColor;
+    }
+    else if(loseCount >= 3){
+        lose3.style.backgroundColor = cpuColor;
     }
 }
 
 function winner(){
-    win3.style.backgroundColor = playerColor;
+    cpuChoice.textContent = '';
+    p1Choice.textContent = '';
+
+    winDisplay.textContent = '';
+    //explanation.textContent = '';
     winTxt.textContent = "You Win!";
 }
 
 function loser(){
+    cpuChoice.textContent = '';
+    p1Choice.textContent = '';
 
+    winDisplay.textContent = '';
+    //explanation.textContent = '';
+    winTxt.textContent = "You Lose!";
 }
 
 function restart(){
-    
+    winCount = 0;
+    loseCount = 0;
+
+    winTxt.textContent = "";
+    cpuChoice.textContent = '';
+    p1Choice.textContent = '';
+
+    winDisplay.textContent = '';
+    explanation.textContent = '';
+
+    win = false;
+    lose = false;
+
+    win1.style.backgroundColor = "white";
+    win2.style.backgroundColor = "white";
+    win3.style.backgroundColor = "white";
+
+    lose1.style.backgroundColor = "white";
+    lose2.style.backgroundColor = "white";
+    lose3.style.backgroundColor = "white";
 }
 
 /*
