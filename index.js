@@ -31,7 +31,7 @@ let lose = false;
 playerColor = "blue";
 cpuColor = "red";
 
-const choices = ["rock", "paper", "scissors"];
+const choices = ["rock", "paper", "scissors", ""];
 
 //console.log(getPlayerChoice());
 //console.log(getComputerChoice());
@@ -42,16 +42,19 @@ const choices = ["rock", "paper", "scissors"];
 //playRound(playerSelection, computerSelection);
 
 
-
 choiceBtn.forEach((button) => {
     button.addEventListener('click', () => {
+        playerSelection = button.id;
         console.log(playerSelection = button.id);
         
-        playerSelection = button.id;
         if(playerSelection != "restart"){
-            getComputerChoice();
-            showChoice(playerSelection, computerSelection);
-            playRound(playerSelection, computerSelection);
+           if(winCount < 3 || loseCount < 3){
+                
+                getComputerChoice();
+                
+                showChoice(playerSelection, computerSelection);
+                playRound(playerSelection, computerSelection);
+            }            
             
         }
         else{
@@ -69,6 +72,10 @@ function playRound(playerSelection, computerSelection){
         while(playerSelection != undefined){
             //winDisplay.textContent = '';
             //explanation.textContent = '';
+            if(winCount >= 3 || loseCount >= 3){
+                restart();
+                return;
+            }
 
             if(computerSelection == playerSelection){
                 winDisplay.textContent = "Draw!"
@@ -160,14 +167,19 @@ function playRound(playerSelection, computerSelection){
 function getComputerChoice(){
     let choiceNum = Math.floor(Math.random() * 3);
     if(choiceNum == 0){
-        return  computerSelection = choices[0];
+        computerSelection = choices[0];
     }
     else if(choiceNum == 1){
-        return  computerSelection = choices[1];
+        computerSelection = choices[1];
     }
-    else{
-        return computerSelection = choices[2];
+    else if(choiceNum == 2){
+        computerSelection = choices[2];
     }
+
+    if(loseCount >= 3 || winCount >= 3){
+        return;
+    }
+    return computerSelection;
 }
 
 function showChoice(playerSelection, computerSelection){
